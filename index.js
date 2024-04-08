@@ -4,9 +4,7 @@ const cors = require("cors");
 const connectDB = require("./src/config/db");
 const port = 2024;
 const app = express();
-
-// const publicRoutes = require("./src/routes/public/index");
-
+const router = require("./src/app/moduls/order/Order.routes")
 // const { notFound, errorHandler } = require("./src/middleware/errorMiddleware");
 
 const corsOptions = {
@@ -24,12 +22,8 @@ const middleware = [
 app.use(middleware);
 connectDB();
 
-// Run Function
-// runPackageROI();
-
-// Here will be custom routes
-
-// app.use("/api/v1/public", publicRoutes);
+// Application routes
+app.use('/api/v1/orders/', router)
 
 app.get("/", (req, res) => {
   return res.status(200).json({

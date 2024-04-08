@@ -1,7 +1,13 @@
-import express from 'express'
-import OrderCollection from './Order.controller'
-const router = express.Router()
+const express = require("express");
+const OrderCollection = require("./Order.controller");
+const { validateCreateOrder } = require("./Validator");
+const router = express.Router();
 
-router.post('/create-order',OrderCollection.CreateOrder )
+router.post("/create-order", validateCreateOrder, OrderCollection.CreateOrder);
+router.get("/get-all-order",  OrderCollection.getAllOrders);
+router.get("/get-order-by-id/:id", OrderCollection.getOrderById);
+router.put("/update-order/:id", OrderCollection.updateOrder);
+router.patch("/partial-update-order/:id", OrderCollection.partialUpdateOrder);
+router.delete("/delete-order/:id", OrderCollection.deleteOrder);
 
-export default router
+module.exports = router;
