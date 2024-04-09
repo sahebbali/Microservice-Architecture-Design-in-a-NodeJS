@@ -4,8 +4,7 @@ const cors = require("cors");
 const connectDB = require("./src/config/db");
 const port = 2024;
 const app = express();
-const router = require("./src/app/moduls/order/Order.routes")
-// const { notFound, errorHandler } = require("./src/middleware/errorMiddleware");
+const router = require("./src/app/modules/order/Order.routes");
 
 const corsOptions = {
   origin: [
@@ -23,7 +22,7 @@ app.use(middleware);
 connectDB();
 
 // Application routes
-app.use('/api/v1/orders/', router)
+app.use("/api/v1/orders/", router);
 
 app.get("/", (req, res) => {
   return res.status(200).json({
@@ -31,9 +30,6 @@ app.get("/", (req, res) => {
     version: "1.0.0",
   });
 });
-
-// app.use(notFound);
-// app.use(errorHandler);
 
 app.listen(port, () => {
   console.log("Server is running at port ", port);
